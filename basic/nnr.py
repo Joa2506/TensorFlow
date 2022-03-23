@@ -76,8 +76,45 @@ model.compile(loss=keras.losses.mae, #mean absolute error
 
 #3 Fit model
 
-tf.print(model.fit(X, y, epochs=5)) #Look at X and y and try to fix the pattern. You have 5 opportunities
+tf.print(model.fit(X, y, epochs=10)) #Look at X and y and try to fix the pattern. You have 5 opportunities
 
 #Try and make a prediction on our model
 
 tf.print(model.predict([17.0]))
+
+#Improve model, by altering the steps taken to create model
+
+#1 Creating model add more layers and increase number of hidden units(neurons) within each og the hidden layers, change activation function
+
+#2 Compiling model, here might change the optimization function
+
+#3 Fitting model. Fit a model for more epochs (leave training for longer or more data) 
+
+#1
+model = keras.Sequential([
+    keras.layers.Input(shape=(1,)),
+    keras.layers.Dense(100, activation='relu'),
+    keras.layers.Dense(1) #Take one number and predict another number
+])
+#2
+model.compile(loss=keras.losses.mae, #mean absolute error
+            optimizer=keras.optimizers.Adam(lr=0.01), #Changed from SGD to Adam
+            metrics=["mae"])
+
+#3
+tf.print(model.fit(X, y, epochs=100))
+tf.print(model.predict([17.0]))
+
+#Common ways to improe a dl model
+
+#Add layers
+
+#Increase hidden units
+
+#Change activation function
+
+#Change optimization function
+
+#Learning rate tweaking (lr very important in many learning settings)
+
+#NB! More is not necessarily better 
